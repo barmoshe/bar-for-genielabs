@@ -1,0 +1,687 @@
+/* =============================================================
+   genielabs.css — bar-for-genielabs, in GenieLabs' real visual language.
+
+   Tokens read live off genielabs.tech (computed styles + section
+   screenshots, 2026-07-03):
+   - display: Big Shoulders weight 800, UPPERCASE, tight tracking
+     (-0.032em), huge (h1 ~110px); body DM Sans; ink #222222
+   - hot pink #FF1C74 pill CTAs, radius 70px, uppercase, glow
+     rgba(255,115,169,.7) 0 0 45px
+   - bands: gray-gradient hero (white type), pastel clouds, flat pink,
+     pink-to-lime gradient, cream footer #F1EFE9
+   - white pill tab bar (Big Shoulders tabs, active = solid white pill)
+   - white rounded cards; glossy 3D blue genie-hand mascot (not rebuilt)
+
+   Every selector is prefixed with .gl-root: marketing-base.css styles
+   bare `a` / `h1..h4` at (0,1,1), which outranks single classes (the
+   lesson from bar-for-guidde, ADR 0147).
+   ============================================================= */
+
+.gl-root {
+  --gl-pink: #ff1c74;
+  --gl-pink-deep: #d60f5e;
+  --gl-glow: rgba(255, 115, 169, 0.7);
+  --gl-ink: #222222;
+  --gl-soft: #40434f;
+  --gl-mute: rgba(34, 34, 34, 0.55);
+
+  --gl-hero-top: #6d6a70;
+  --gl-hero-bot: #a2939c;
+  --gl-cream: #f1efe9;
+  --gl-pinkband: #f4d9f2;
+
+  --gl-tint-pink: #fde3f0;
+  --gl-tint-lavender: #e6e1fa;
+  --gl-tint-lime: #eaf6c7;
+  --gl-tint-cream: #f6f1e7;
+  --gl-tint-blue: #dfe9fb;
+
+  --gl-radius: 24px;
+  --gl-radius-pill: 70px;
+
+  --gl-display: var(--font-gl-display), 'Big Shoulders', Impact, sans-serif;
+  --gl-body: var(--font-gl-body), 'DM Sans', -apple-system, 'Segoe UI', sans-serif;
+  --gl-shadow: 0 18px 44px rgba(40, 20, 40, 0.12);
+  --gl-shadow-sm: 0 8px 22px rgba(40, 20, 40, 0.10);
+
+  background: #ffffff;
+  color: var(--gl-ink);
+  font-family: var(--gl-body);
+  font-size: 17px;
+  line-height: 1.55;
+  min-block-size: 100svh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.gl-root *,
+.gl-root *::before,
+.gl-root *::after {
+  box-sizing: border-box;
+}
+
+/* repaint the marketing-base link + focus defaults */
+.gl-root a {
+  color: var(--gl-pink-deep);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+.gl-root a:hover {
+  color: var(--gl-pink);
+}
+
+.gl-root :focus-visible {
+  outline: 2.5px solid var(--gl-pink);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.gl-root .gl-skip {
+  position: absolute;
+  inset-inline-start: 12px;
+  inset-block-start: -48px;
+  z-index: 60;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--gl-ink);
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  transition: inset-block-start 0.15s ease;
+}
+
+.gl-root .gl-skip:focus-visible {
+  inset-block-start: 12px;
+}
+
+/* ── Type: Big Shoulders 800 uppercase, tight ─────────────── */
+
+.gl-root .gl-title,
+.gl-root .gl-h2 {
+  margin: 0;
+  font-family: var(--gl-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.96;
+  color: var(--gl-ink);
+  text-wrap: balance;
+}
+
+.gl-root .gl-title {
+  font-size: clamp(3.2rem, 8.6vw, 6.6rem);
+  color: #ffffff;
+}
+
+.gl-root .gl-h2 {
+  font-size: clamp(2.4rem, 5.6vw, 4.2rem);
+}
+
+.gl-root .gl-h2--center {
+  text-align: center;
+}
+
+.gl-root .gl-eyebrow {
+  margin: 0 0 26px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.gl-root .gl-lede {
+  max-inline-size: 44rem;
+  margin: 26px auto 0;
+  font-size: 1.12rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.gl-root .gl-sub {
+  margin: 16px 0 0;
+  font-size: 1.06rem;
+  color: var(--gl-soft);
+}
+
+.gl-root .gl-sub--center {
+  text-align: center;
+  max-inline-size: 40rem;
+  margin-inline: auto;
+}
+
+/* ── Buttons: fully-round pills, uppercase, pink glow ─────── */
+
+.gl-root .gl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 32px;
+  border: 1.5px solid transparent;
+  border-radius: var(--gl-radius-pill);
+  font-family: var(--gl-body);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.gl-root .gl-btn--sm {
+  padding: 11px 22px;
+  font-size: 0.85rem;
+}
+
+.gl-root .gl-btn--pink {
+  background: var(--gl-pink);
+  color: #fff;
+  box-shadow: 0 0 45px 0 var(--gl-glow);
+}
+
+.gl-root .gl-btn--pink:hover {
+  background: var(--gl-pink-deep);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.gl-root .gl-btn--ondark {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.55);
+  color: #fff;
+}
+
+.gl-root .gl-btn--ondark:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.gl-root .gl-btn--outline {
+  background: #fff;
+  border-color: var(--gl-ink);
+  color: var(--gl-ink);
+}
+
+.gl-root .gl-btn--outline:hover {
+  background: var(--gl-tint-pink);
+  color: var(--gl-ink);
+}
+
+.gl-root .gl-btn--ghost {
+  background: transparent;
+  color: #fff;
+}
+
+.gl-root .gl-btn--ghost:hover {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .gl-root .gl-btn--pink {
+    animation: gl-glow 2.6s ease-in-out infinite;
+  }
+}
+
+@keyframes gl-glow {
+  0%, 100% { box-shadow: 0 0 45px 0 var(--gl-glow); }
+  50% { box-shadow: 0 0 22px 0 rgba(255, 115, 169, 0.45); }
+}
+
+/* ── Wordmark: Big Shoulders, like their display voice ────── */
+
+.gl-root .gl-wordmark {
+  font-family: var(--gl-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.gl-root .gl-wordmark--ink {
+  color: var(--gl-ink);
+}
+
+/* ── Nav: absolute over the dark hero ─────────────────────── */
+
+.gl-root .gl-nav {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  z-index: 50;
+}
+
+.gl-root .gl-nav__inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-inline-size: 1240px;
+  margin-inline: auto;
+  padding: 20px 28px;
+}
+
+.gl-root .gl-brand {
+  text-decoration: none;
+  line-height: 1;
+}
+
+.gl-root .gl-nav__tag {
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.gl-root .gl-nav__links {
+  display: flex;
+  gap: 24px;
+  margin-inline: auto;
+}
+
+.gl-root .gl-nav__link {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.98rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.gl-root .gl-nav__link:hover {
+  color: #fff;
+}
+
+.gl-root .gl-nav__cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-inline-start: auto;
+}
+
+/* ── Hero: gray gradient, centered ────────────────────────── */
+
+.gl-root .gl-hero {
+  position: relative;
+  background: linear-gradient(180deg, var(--gl-hero-top) 0%, var(--gl-hero-bot) 100%);
+}
+
+.gl-root .gl-hero__inner {
+  max-inline-size: 1080px;
+  margin-inline: auto;
+  padding: 158px 28px 110px;
+  text-align: center;
+}
+
+.gl-root .gl-hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-block-start: 36px;
+}
+
+/* ── Clouds band: pastel sky + the pill tab bar ───────────── */
+
+.gl-root .gl-clouds {
+  padding: 56px 0 96px;
+  background:
+    radial-gradient(560px 300px at 18% 22%, rgba(255, 255, 255, 0.55), transparent 65%),
+    radial-gradient(640px 340px at 82% 12%, rgba(255, 236, 248, 0.7), transparent 66%),
+    radial-gradient(700px 380px at 55% 68%, rgba(255, 255, 255, 0.4), transparent 70%),
+    linear-gradient(180deg, #cdc5ec 0%, #decfee 46%, #e7d6ef 100%);
+}
+
+.gl-root .gl-wrap {
+  max-inline-size: 1180px;
+  margin-inline: auto;
+  padding-inline: 28px;
+}
+
+/* the customer-logo strip, repurposed as the stack */
+.gl-root .gl-stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px 34px;
+  max-inline-size: 980px;
+  margin: 0 auto 72px;
+  padding: 0 28px;
+  list-style: none;
+}
+
+.gl-root .gl-stack__item {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: rgba(34, 34, 34, 0.45);
+  white-space: nowrap;
+}
+
+/* the white pill tab bar */
+.gl-root .gl-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  max-inline-size: fit-content;
+  margin: 44px auto 0;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.38);
+  backdrop-filter: blur(6px);
+}
+
+.gl-root .gl-tabs__pill {
+  padding: 12px 26px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--gl-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: rgba(34, 34, 34, 0.5);
+  cursor: pointer;
+  transition: background 0.16s ease, color 0.16s ease;
+}
+
+.gl-root .gl-tabs__pill:hover {
+  color: var(--gl-ink);
+}
+
+.gl-root .gl-tabs__pill.is-active {
+  background: #ffffff;
+  color: var(--gl-ink);
+  box-shadow: var(--gl-shadow-sm);
+}
+
+/* the board under the tabs */
+.gl-root .gl-board {
+  margin-block-start: 34px;
+}
+
+.gl-root .gl-board__line {
+  margin: 0 0 22px;
+  text-align: center;
+  font-size: 1.02rem;
+  color: var(--gl-soft);
+}
+
+.gl-root .gl-board__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 18px;
+  max-inline-size: 880px;
+  margin-inline: auto;
+}
+
+.gl-root .gl-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 28px 26px;
+  border-radius: 20px;
+  background: #fff;
+  text-decoration: none;
+  box-shadow: var(--gl-shadow-sm);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.gl-root .gl-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--gl-shadow);
+}
+
+.gl-root .gl-tile--static:hover {
+  transform: none;
+  box-shadow: var(--gl-shadow-sm);
+}
+
+.gl-root .gl-tile--pink { background: var(--gl-tint-pink); }
+.gl-root .gl-tile--lavender { background: var(--gl-tint-lavender); }
+.gl-root .gl-tile--lime { background: var(--gl-tint-lime); }
+.gl-root .gl-tile--cream { background: var(--gl-tint-cream); }
+.gl-root .gl-tile--blue { background: var(--gl-tint-blue); }
+
+.gl-root .gl-tile__tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gl-mute);
+}
+
+.gl-root .gl-tile__title {
+  margin: 0;
+  font-family: var(--gl-display);
+  font-size: 1.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 1;
+  color: var(--gl-ink);
+}
+
+.gl-root .gl-tile__desc {
+  margin: 0;
+  flex: 1;
+  font-size: 0.94rem;
+  line-height: 1.5;
+  color: var(--gl-soft);
+}
+
+.gl-root .gl-tile__link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--gl-pink-deep);
+}
+
+.gl-root .gl-tile:hover .gl-tile__link {
+  text-decoration: underline;
+}
+
+.gl-root .gl-tile__link--muted {
+  color: var(--gl-mute);
+}
+
+.gl-root .gl-more {
+  margin: 36px 0 0;
+  text-align: center;
+  color: var(--gl-soft);
+}
+
+.gl-root .gl-more a {
+  color: var(--gl-pink-deep);
+  font-weight: 500;
+}
+
+/* ── Experience: flat pink band, CV rows ──────────────────── */
+
+.gl-root .gl-pinkband {
+  padding: 96px 0;
+  background: var(--gl-pinkband);
+}
+
+.gl-root .gl-exp {
+  margin-block-start: 40px;
+  border-top: 1px solid rgba(34, 34, 34, 0.18);
+}
+
+.gl-root .gl-exp__row {
+  display: grid;
+  grid-template-columns: 150px 300px 1fr;
+  gap: 18px;
+  align-items: baseline;
+  padding: 18px 4px;
+  border-bottom: 1px solid rgba(34, 34, 34, 0.18);
+}
+
+.gl-root .gl-exp__when {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--gl-pink-deep);
+  white-space: nowrap;
+}
+
+.gl-root .gl-exp__what {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--gl-ink);
+}
+
+.gl-root .gl-exp__detail {
+  font-size: 0.95rem;
+  color: var(--gl-soft);
+}
+
+/* ── Close: pink-to-lime, contact-card motif ──────────────── */
+
+.gl-root .gl-close {
+  padding: 104px 28px;
+  background: linear-gradient(180deg, #f2d8ee 0%, #efe3d9 48%, #e5f0c2 100%);
+}
+
+.gl-root .gl-close__inner {
+  max-inline-size: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.gl-root .gl-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-block-start: 34px;
+  padding: 30px;
+  border-radius: var(--gl-radius);
+  background: #ffffff;
+  box-shadow: var(--gl-shadow);
+}
+
+/* ── Footer (cream) ───────────────────────────────────────── */
+
+.gl-root .gl-footer {
+  background: var(--gl-cream);
+}
+
+.gl-root .gl-footer__inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+  max-inline-size: 1180px;
+  margin-inline: auto;
+  padding: 56px 28px 40px;
+}
+
+.gl-root .gl-footer__tag {
+  max-inline-size: 26rem;
+  margin: 14px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--gl-soft);
+}
+
+.gl-root .gl-footer__h {
+  margin: 4px 0 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gl-ink);
+}
+
+.gl-root .gl-footer__col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gl-root .gl-footer__link {
+  color: var(--gl-soft);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.gl-root .gl-footer__link:hover {
+  color: var(--gl-pink-deep);
+}
+
+.gl-root .gl-footer__bottom {
+  border-top: 1px solid rgba(34, 34, 34, 0.12);
+}
+
+.gl-root .gl-footer__bottom-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  max-inline-size: 1180px;
+  margin-inline: auto;
+  padding: 18px 28px;
+  font-size: 0.85rem;
+  color: var(--gl-mute);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .gl-root .gl-nav__links {
+    display: none;
+  }
+
+  .gl-root .gl-exp__row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .gl-root .gl-footer__inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 560px) {
+  .gl-root .gl-nav__inner {
+    padding-inline: 16px;
+    gap: 10px;
+  }
+
+  .gl-root .gl-nav__tag {
+    display: none;
+  }
+
+  .gl-root .gl-hero__inner {
+    padding: 128px 18px 80px;
+  }
+
+  .gl-root .gl-wrap {
+    padding-inline: 18px;
+  }
+
+  .gl-root .gl-tabs__pill {
+    padding: 10px 16px;
+    font-size: 1rem;
+  }
+
+  .gl-root .gl-btn {
+    padding: 13px 24px;
+  }
+
+  .gl-root .gl-card {
+    padding: 20px;
+  }
+}
+
+/* ── Reduced motion: everything legible, nothing moves ────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .gl-root .gl-btn,
+  .gl-root .gl-tile {
+    transition: none;
+  }
+}

@@ -1,0 +1,18 @@
+/* Minimal document base. The page surface is painted by `.gl-root` in
+   src/marketing/genielabs/genielabs.css; here we only zero the document
+   margins and set the dark warm gray behind the app (GenieLabs' hero
+   surface) so there is no white flash before the React tree mounts. */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #6d6a70; /* --gl-hero top */
+  color-scheme: light;
+}
+
+body {
+  min-height: 100svh;
+}
